@@ -45,7 +45,7 @@ product9 = Product("MercedesH3" , "H002", category2, 220000)
 product10 = Product("WolkswagonH00" , "H006", category2, 100000)
 # product11 = Product("YezdiHaatch" , "H006", category2, 100000)  put intentionally to show it works dynamically
 
-
+products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10]
 
 # it will print all category with no_of_products in dynamic manner
 print("Category Information:")
@@ -57,9 +57,6 @@ ssearch = input("Do you wnat to  see based on price , Type LOW for low to high a
 
 # it will sort and print product in lower to higher order
 if ssearch == 'low':
-  products = [] 
-  for category in [category1, category2, category3]:
-    products.extend(category.no_of_products) 
   for i in range(len(products)):
     for j in range(i + 1, len(products)):
         if products[i].price > products[j].price:
@@ -70,9 +67,6 @@ if ssearch == 'low':
 
 # it will sort and print products in higher to lower order      
 elif ssearch == 'high':
-  products = [] 
-  for category in [category1, category2, category3]:
-    products.extend(category.no_of_products)
   for i in range(len(products)):
     for j in range(i + 1, len(products)):
         if products[i].price < products[j].price:
