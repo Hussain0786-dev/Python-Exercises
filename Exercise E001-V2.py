@@ -23,7 +23,7 @@ class Category:
         return len(self.no_of_products)
     
     def __repr__(self):
-        return f"{self.name},code: {self.code}, Display Name: {self.display_name}, Number of Products: {self.calculate_no_of_products()})"
+        return f"{self.name},(code: {self.code}, Display Name: {self.display_name}, Number of Products: {self.calculate_no_of_products()})"
 
 class Product:         # Define Product Class
     def __init__(self, name, code, category, price):  #Initializing Product Calass
@@ -83,7 +83,7 @@ product22 = Product("Electric Car", "ECAR001", vehicle_category, 48000)
 products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13, product14, product15, product16, product17, product18, product19, product20, product21, product22]
 
 print("Category Information:")
-for category in [category1, category2, category3]:
+for category in [category1, category2, category3, bike_category, car_category, petrol_category, diesel_category, vehicle_category]:
     print(category)
     
 ssearch = input("Do you wnat to  see based on price , Type LOW for low to high and Type HIGH For high to low: ")
