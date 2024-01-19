@@ -24,6 +24,18 @@ class Category:
     
     def __repr__(self):
         return f"{self.name},(code: {self.code}, Display Name: {self.display_name}, Number of Products: {self.calculate_no_of_products()})"
+        
+def code(csearch):
+  found = None
+  for product in products:
+    if product.code == csearch:
+      found = product
+      break
+  if found:
+    print(found)
+  else:
+    print("Please Enter Valid Code")
+      
 
 class Product:         # Define Product Class
     def __init__(self, name, code, category, price):  #Initializing Product Calass
@@ -37,6 +49,24 @@ class Product:         # Define Product Class
     #String representation of Product  
     def __repr__(self):
         return f"{self.name} (code: {self.code}, Category: {self.category.name}, Price: {self.price})"
+
+def sort_asc(ssearch):
+    for i in range(len(products)):
+      for j in range(i + 1, len(products)):
+          if products[i].price > products[j].price:
+              # Swap the products in the list if the price is lower
+              products[i], products[j] = products[j], products[i]
+    for product in products:
+        print(product)
+        
+def sort_desc(ssearch):
+    for i in range(len(products)):
+      for j in range(i + 1, len(products)):
+          if products[i].price < products[j].price:
+              products[i], products[j] = products[j], products[i]
+    for product in products:
+        print(product)
+
 
 vehicle_category = Category("Vehicle", "V001")
 car_category = Category("Car", "C004", parent=vehicle_category)
@@ -90,37 +120,17 @@ ssearch = input("Do you wnat to  see based on price , Type LOW for low to high a
 
 # it will sort and print product in lower to higher order
 if ssearch == 'low':
-    for i in range(len(products)):
-        for j in range(i + 1, len(products)):
-            if products[i].price > products[j].price:
-                # Swap the products in the list if the price is lower
-                products[i], products[j] = products[j], products[i]
-    for product in products:
-        print(product)
+    sort_asc(ssearch)
 
 # it will sort and print products in higher to lower order      
 elif ssearch == 'high':
-    for i in range(len(products)):
-        for j in range(i + 1, len(products)):
-            if products[i].price < products[j].price:
-                products[i], products[j] = products[j], products[i]
-    for product in products:
-        print(product)   
-        
-        
-        
-        
+    sort_desc(ssearch)
+else:
+  print("Please enter valid option")
+                
 #  program will execute this statement if input is given incorrectly 
 csearch = input("Please Enter the code for search: ")
-found = None
-for product in products:
-    if product.code == csearch:
-        found = product
-        break
-if found:
-    print(found)
-else:
-    print("Please Enter Valid Code")
+code(csearch)
 
 # Display Category with Code, Display Name, and all product details inside that category    
 all_categories = [category1, category2, category3, vehicle_category, car_category, petrol_category, bike_category, diesel_category]
