@@ -11,6 +11,18 @@ class Category:          #Define Category Class
   def __repr__(self):
     return f"{self.name} (Code: {self.code}, Number of Products: {self.calculate_no_of_products()})"
 
+def code(csearch):
+  found = None
+  for product in products:
+    if product.code == csearch:
+      found = product
+      break
+  if found:
+    print(found)
+  else:
+    print("Please Enter Valid Code")
+  
+
 class Product:         # Define Product Class
   def __init__(self, name, code, category, price):  #Initializing Product Calass
     self.name = name
@@ -24,12 +36,30 @@ class Product:         # Define Product Class
   #String representation of Product  
   def __repr__(self):
     return f"{self.name} (code: {self.code}, Category: {self.category.name}, Price: {self.price})"
+    
+def sort_asc(ssearch):
+    for i in range(len(products)):
+      for j in range(i + 1, len(products)):
+          if products[i].price > products[j].price:
+              # Swap the products in the list if the price is lower
+              products[i], products[j] = products[j], products[i]
+    for product in products:
+        print(product)
+        
+def sort_desc(ssearch):
+    for i in range(len(products)):
+      for j in range(i + 1, len(products)):
+          if products[i].price < products[j].price:
+              products[i], products[j] = products[j], products[i]
+    for product in products:
+        print(product)
+
+
 
 # Define Category Objects
 category1 = Category("Cross", "C001")
 category2 = Category("Hatchback","H003")
 category3 = Category("SUV","S009")
-
 
 
 # Define Product Objects
@@ -57,23 +87,11 @@ ssearch = input("Do you wnat to  see based on price , Type LOW for low to high a
 
 # it will sort and print product in lower to higher order
 if ssearch == 'low':
-  for i in range(len(products)):
-    for j in range(i + 1, len(products)):
-        if products[i].price > products[j].price:
-            # Swap the products in the list if the price is lower
-            products[i], products[j] = products[j], products[i]
-  for product in products:
-      print(product)
+  sort_asc(ssearch)
 
 # it will sort and print products in higher to lower order      
 elif ssearch == 'high':
-  for i in range(len(products)):
-    for j in range(i + 1, len(products)):
-        if products[i].price < products[j].price:
-
-            products[i], products[j] = products[j], products[i]
-  for product in products:
-      print(product)   
+  sort_desc(ssearch)
       
 # program will execute this statement if input is given incorrectly 
 else:
@@ -82,14 +100,6 @@ else:
   
 # it will print product details based code given as input 
 csearch = input("Please Enter the code for search: ")
-found = None
-for product in products:
-  if product.code == csearch:
-    found = product
-    break
-if found:
-  print(found)
-else:
-  print("Please Enter Valid Code")
+code(csearch)
 
 
